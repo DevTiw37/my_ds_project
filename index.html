@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modular Data Science Pipeline | Portfolio Showcase</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        linen: '#F9F6F0',
+                        cream: '#F4EFE6',
+                        terracotta: '#D97757',
+                        'terracotta-dark': '#B85D3D',
+                        moss: '#4A7C59',
+                        'moss-dark': '#386044',
+                        slate: '#2C3E50',
+                        stone: '#D1C7B7'
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(213, 201, 185, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-linen text-slate min-h-full font-sans antialiased p-6 md:p-12">
+
+    <div class="max-w-5xl mx-auto space-y-8">
+        
+        <!-- Header Banner -->
+        <div class="glass-card p-8 rounded-3xl shadow-sm border border-stone/30 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div>
+                <div class="flex items-center space-x-2 mb-3">
+                    <span class="bg-terracotta/10 text-terracotta text-xs font-bold px-3 py-1 rounded-full">Production-Grade</span>
+                    <span class="bg-moss/10 text-moss text-xs font-bold px-3 py-1 rounded-full"><i class="fa-solid fa-vial mr-1"></i> Pytest 100% Passed</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold text-slate tracking-tight">Modular Object-Oriented Data Pipeline</h1>
+                <p class="text-sm text-slate-600 mt-2 max-w-2xl">A test-driven, decoupled data science architecture built with Python, Pandas, and Scikit-Learn to prevent data leakage and ensure robust data hygiene.</p>
+            </div>
+            <div class="flex space-x-3">
+                <a href="https://github.com/DevTiw37/my_ds_project" target="_blank" class="px-5 py-3 bg-slate text-linen font-semibold text-xs rounded-xl hover:bg-slate-700 transition-all shadow-sm flex items-center space-x-2">
+                    <i class="fa-brands fa-github text-sm"></i>
+                    <span>View Repository</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Project Structure Section -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-6 rounded-2xl border border-stone/30 md:col-span-1">
+                <h3 class="font-bold text-slate text-base mb-4 flex items-center">
+                    <i class="fa-solid fa-folder-tree text-terracotta mr-2"></i> Project Layout
+                </h3>
+                <pre class="bg-slate text-linen p-4 rounded-xl text-[11px] font-mono overflow-x-auto leading-relaxed">
+my_ds_project/
+├── data/
+│   ├── raw/
+│   └── processed/
+├── src/
+│   ├── __init__.py
+│   ├── loader.py
+│   ├── cleaner.py
+│   └── transformer.py
+├── tests/
+│   └── test_components.py
+├── main.py
+├── requirements.txt
+└── README.md</pre>
+            </div>
+
+            <!-- Architectural Highlights -->
+            <div class="glass-card p-6 rounded-2xl border border-stone/30 md:col-span-2 space-y-4">
+                <h3 class="font-bold text-slate text-base flex items-center">
+                    <i class="fa-solid fa-brain text-moss mr-2"></i> Core Architecture & Design
+                </h3>
+                <div class="space-y-3 text-xs text-slate-700">
+                    <div class="p-3 bg-cream/70 rounded-xl border border-stone/30">
+                        <span class="font-bold text-slate block mb-0.5">1. DataLoader (`src/loader.py`)</span>
+                        Handles ingestion of raw CSV datasets with integrated exception handling and execution logging.
+                    </div>
+                    <div class="p-3 bg-cream/70 rounded-xl border border-stone/30">
+                        <span class="font-bold text-slate block mb-0.5">2. DataCleaner (`src/cleaner.py`)</span>
+                        Stateless transformer that eliminates duplicate records and imputes missing numeric values using clean medians.
+                    </div>
+                    <div class="p-3 bg-cream/70 rounded-xl border border-stone/30">
+                        <span class="font-bold text-slate block mb-0.5">3. FeatureTransformer (`src/transformer.py`)</span>
+                        Scikit-learn compatible wrapper (`BaseEstimator`, `TransformerMixin`) that applies `StandardScaler` and `OneHotEncoder` safely.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Inspection Section -->
+        <div class="glass-card p-6 md:p-8 rounded-2xl border border-stone/30 space-y-6">
+            <div class="flex justify-between items-center border-b border-stone/20 pb-4">
+                <h3 class="font-bold text-slate text-lg flex items-center">
+                    <i class="fa-solid fa-code text-terracotta mr-2"></i> Pipeline Orchestrator (`main.py`)
+                </h3>
+                <span class="text-xs text-slate-500 font-mono">End-to-End Execution Flow</span>
+            </div>
+            <pre class="p-5 bg-slate text-linen rounded-xl text-xs font-mono overflow-x-auto leading-relaxed border border-slate-700">
+import pandas as pd
+from src.loader import DataLoader
+from src.cleaner import DataCleaner
+from src.transformer import FeatureTransformer
+
+class DataPipeline:
+    def __init__(self, file_path: str):
+        self.loader = DataLoader(file_path)
+        self.cleaner = DataCleaner()
+        self.transformer = FeatureTransformer()
+
+    def run_pipeline(self, output_path: str | None = None) -> pd.DataFrame:
+        raw_data = self.loader.load_data()
+        cleaned_data = self.cleaner.fit_transform(raw_data)
+        processed_data = self.transformer.fit_transform(cleaned_data)
+        
+        final_df = pd.DataFrame(processed_data)
+        if output_path:
+            final_df.to_csv(output_path, index=False)
+        return final_df</pre>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center text-xs text-slate-500 py-4 border-t border-stone/20">
+            Modular Data Science Pipeline • Built with Python, Scikit-Learn, and Pytest
+        </div>
+
+    </div>
+</body>
+</html>
